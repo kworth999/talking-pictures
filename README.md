@@ -13,7 +13,7 @@
     <img src='https://img.shields.io/badge/-dotenv-yellow' /> -->
 </p>
      
-  ## Description 🗺️
+  ## Description 🎞️
    Interactive website for capturing movies that users want to see, have seen, as well as personal scores and reviews!  
 
   ## Table of Contents
@@ -38,16 +38,22 @@
 
   ## Contributing 👨‍💻
   Calvin Donner
+
   Johnson Ha
+
   Kayla Worth
+  
   Mason Weeks
 
   ## GitHub :octocat:
   [Calvin Donner](https://github.com/calvinjdonner)
+
   [Johnson Ha](https://github.com/Johnsonha801)
+
   [Kayla Worth](https://github.com/kworth999)
+
   [Mason Weeks](https://github.com/Mason41)
 
   ## Questions ❓
-  Please email me with any questions at: calvinjdonner@gmail.com<br />
+  <br />
  
