@@ -25,13 +25,13 @@
 
   ## Installation 💾
    
-  <!-- `npm init`
+  `npm init`
 
   `npm mysql2`
 
   `npm i sequelize`
 
-  `npm install dotenv` -->
+  `npm install dotenv`
 
   ## Usage 🎛️
 
