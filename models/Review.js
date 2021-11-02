@@ -1,10 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
-const sequelize = require('./config/connection');
+const sequelize = require('../config/connection');
 
-class MovieRating extends Model {}
+class Review extends Model {}
 
-MovieRating.init(
+Review.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -13,7 +13,7 @@ MovieRating.init(
             autoIncrement: true
         },
         imdb_id: {
-            type: dataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         user_id: {
@@ -25,7 +25,7 @@ MovieRating.init(
             }
         },
         rating: {
-            type: Datatypes.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false
         }, 
         comment: {
@@ -37,8 +37,8 @@ MovieRating.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'movie_rating'
+        modelName: 'review'
     }
 );
 
-module.exports = MovieRating;
+module.exports = Review;
