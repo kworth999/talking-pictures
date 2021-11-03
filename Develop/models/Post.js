@@ -13,6 +13,14 @@ Post.init(
             type: DataTypes.STRING,
             allowNull: false
         },
+        score: {
+            type:DataTypes.INTEGER,
+            allowNull: false
+        },
+        body: {
+            type:DataTypes.STRING,
+            allowNull: false
+        },
         post_url: {
             type: DataTypes.STRING,
             allowNull: false,

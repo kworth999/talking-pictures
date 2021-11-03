@@ -70,6 +70,8 @@ const postdata = [
         body: "Not bad, not necessary, but I guess if the saga has to continue, they could have done worse. It's basically just another excuse to exploit the franchise, fill the box office tills, yet not utilize the strong simian story of family and understanding from the other films. This gives the impression that the humans writing this genuinely hate humanity and didn't see any point of their own race continuing to survive, let alone dominate. It's a pretty ugly pill to swallow, and leaves the audience depressed and feeling hopeless.",
         user_id: 5
     },
-    
+];
 
-]
+const seedPosts = () => Post.bulkCreate(postdata);
+
+module.exports = seedPosts;
