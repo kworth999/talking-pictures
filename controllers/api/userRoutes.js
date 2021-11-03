@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const { User, Review } = require('../../models/index');
-// const checkAuth = require('../../utils/auth');
+const checkAuth = require('../../utils/auth');
 
 // Get all users - /api/user/
-router.get('/', (req, res) => {
+router.get('/', checkAuth, (req, res) => {
     User.findAll()
     .then(userData => {
         if (!userData) {
@@ -23,8 +23,14 @@ router.get('/', (req, res) => {
 });
 
 // Get single user - /api/user/:id
-router.get('/:id', (req, res) => {
-    User.findOne()
+router.get('/:id', checkAuth, (req, res) => {
+    User.findOne({
+        include: [
+            {
+                model: Review
+            }
+        ]
+    })
     .then(userData => {
         if (!userData) {
             res.status(400).json({ message: 'Unable to find any users using the provided ID.' });
@@ -43,7 +49,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST create user - /api/user
-router.post('/', (req, res) => {
+router.post('/', checkAuth, (req, res) => {
     User.create({
         username: req.body.username,
         password: req.body.password
@@ -66,7 +72,7 @@ router.post('/', (req, res) => {
 });
 
 // PUT update user - /api/user/:id
-router.put('/:id', (req, res) => {
+router.put('/:id', checkAuth, (req, res) => {
     User.update(req.body, {
         where: { id: req.params.id }
     })
@@ -88,7 +94,7 @@ router.put('/:id', (req, res) => {
 });
 
 // DELETE user - /api/user/:id
-router.delete('/:id', (req, res) => {
+router.delete('/:id', checkAuth, (req, res) => {
     User.destroy({
         where: { id: req.params.id }
     })
