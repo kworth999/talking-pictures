@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Talkin' Movies</title>
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <header>
+                <div>
+                    <nav>
+                        <a href="">Home</a>
+                        <a href="">Profile</a>
+                        {{#if loggedIn}}
+                        <a href="" id="logout">Logout</a>
+                        {{else}}
+                        <a href="/public/javascript/login.js">Login</a>
+                        {{/if}}
+                    </nav>
+                </div>
+                <div>
+                    <h1 class="home-title">Talkin' Pictures</h1>
+                </div>
+            </header>
+            <main>
+                {{{ body }}}
+            </main>
+        </div>
+        {{#if loggedIn}}
+        <script src="/public/javascript/logout.js"></script>
+        {{/if}}
+    </body>
+</html>
