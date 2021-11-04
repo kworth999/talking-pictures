@@ -1,0 +1,21 @@
+{{#if posts.length}}
+<section>
+    <h2>Your Reviews</h2>
+    <ol class="post-list">
+        {{#each posts as |post|}}
+        <li>
+            {{> dashboard-post-info post}}
+        </li>
+        {{/each}}
+    </ol>
+</section>
+
+{{else}}
+<section>
+    <h3>Your haven't reviewed any movies yet.</h3>
+</section>
+{{/if}}
+
+<button type="submit">
+    <a href="/dashboard/new">Add New Review</a>
+</button>
