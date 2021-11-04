@@ -139,6 +139,7 @@ router.post('/login', (req, res) => {
             req.session.username = userData.username;
             req.session.loggedIn = true;
             // Frontend TODO
+            
             // Redirect user to page once logged in
             res.status(200).json({
                 message: 'Successfully logged in.',
