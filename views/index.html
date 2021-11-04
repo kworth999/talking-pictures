@@ -22,11 +22,13 @@
             <li><a href="#">Create Account</a></li>
         </ul>
         <div class="search">
-            <input type="text" placeholder="Find your favorite movies"/>
+            <form id="searchForm">
+                <input type="text" placeholder="Find your favorite movies" id="searchText"/>
+            </form>
             <i class="fas fa-search"></i>
         </div>
     </nav>
-    <section id="main">
+    <section id="movies">
         <h1 class="showcase-head">Movies</h1>
             <ul id="autoWidth" class="cs-hidden">
                 <li class="item-a">
@@ -83,8 +85,15 @@
             
                 
     </section>
-</body>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <script src="/controllers/api/movieRoutes.js"></script>
     <footer>
         <p>Copyright 2021 - Talking Pictures</p>
     </footer>
+
+    </body>
 </html>
