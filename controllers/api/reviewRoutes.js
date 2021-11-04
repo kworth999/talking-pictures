@@ -42,6 +42,27 @@ router.post('/', checkAuth, (req, res) => {
 });
 
 // Get all reviews by movie ID
+router.get('/', checkAuth, (req, res) => {
+    Review.findAll({
+        where: {
+            imdb_id
+        }
+    })
+    .then(reviewData => {
+        if (!reviewData) {
+            res.status(400).json({ message: 'Unable to find reviews using the provided user ID.'});
+            return;
+        }
+        res.status(200).json(reviewData);
+    })
+    .catch(error => {
+        console.log(error);
+        res.status(500).json({
+            message: 'The system was unable to process your request.',
+            error
+        })
+    });
+});
 
 // Get all user reviews by user ID
 // /api/review/user/:user_id
@@ -68,23 +89,25 @@ router.get('/user/:user_id', checkAuth, (req, res) => {
 });
 
 // Get top 10 user reviews
-router.get('/:id', checkAuth, (req, res) => {
-    Review.findOne({
+router.get('/user/:user_id', checkAuth, (req, res) => {
+    Review.findAll({limit:10}) ({
         where: {
-            id
+            user_id: req.params.user_id
         }
     })
     .then(reviewData => {
         if (!reviewData) {
-            res.status(400).json({message: 'Could not find review using provided ID.'});
+            res.status(400).json({ message: 'Unable to find reviews using the provided user ID.'});
             return;
         }
-
-        res.status(200).json(reviewData)
+        res.status(200).json(reviewData);
     })
     .catch(error => {
         console.log(error);
-        res.status(500).json({ message: 'The system was unable to process your request.'})
+        res.status(500).json({
+            message: 'The system was unable to process your request.',
+            error
+        })
     });
 });
 // Get review by ID

@@ -5,7 +5,6 @@ const withAuth = require('../../utils/auth');
 router.get('/', withAuth, (req, res) => {
     const userId = req.session.user_id;
     const userName = req.session.username;
-    const isAdmin = (req.session.role_id === 2) ? true : false;
     res.render('dashboard', { userId, userName, loggedIn: req.session.loggedIn});
 });
 
