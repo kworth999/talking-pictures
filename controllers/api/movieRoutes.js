@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User, Review } = require('../../models/index');
 const checkAuth = require('../../utils/auth');
 
-$(function() {
+$(document).ready(() => {
     $('#searchForm').on('submit', (e) => {
         let searchText = $('#searchText').val();
         getMovies(searchText);
