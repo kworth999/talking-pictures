@@ -7,7 +7,7 @@ router.use('/user', require('./userRoutes'));
 router.use('/review', require('./reviewRoutes'));
 
 // Movie API routes - /api/review
-router.use('/movie', require('./movieRoutes'));
+// router.use('/movie', require('./movieRoutes'));
 
 // Catch and handle all other unknown routes
 router.use((req, res) => {
