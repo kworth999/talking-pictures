@@ -10,5 +10,5 @@ Review.belongsTo(User, {
 
 module.exports = {
     User,
-    Review
+    Review,
 }
