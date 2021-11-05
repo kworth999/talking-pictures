@@ -121,14 +121,14 @@ router.post('/login', (req, res) => {
             username: req.body.username
         }
     })
-    .then(userData => {
-        if (!userData) {
+    .then(dbUserData => {
+        if (!dbUserData) {
             res.status(400).json({ message: 'Unable to find a user using the provided user ID.' });
             return;
         }
 
         // Validate Password
-        const validPassword = userData.checkPassword(req.body.password);
+        const validPassword = dbUserData.checkPassword(req.body.password);
         if (!validPassword) {
             res.status(400).json({ message: 'Incorrect password!' });
         }
@@ -138,7 +138,7 @@ router.post('/login', (req, res) => {
             req.session.username = dbUserData.username;
             req.session.loggedIn = true;
             // Frontend TODO
-            res.redirect('/homepage');
+            res.json({ user: dbUserData, message: 'You are finally logged in!' });
             // Redirect user to page once logged in
             // res.status(200).json({
             //     message: 'Successfully logged in.',
@@ -146,9 +146,6 @@ router.post('/login', (req, res) => {
             //     session: req.session
             // });
         });
-
-        
-
     })
     .catch(err => {
         console.log(err);
