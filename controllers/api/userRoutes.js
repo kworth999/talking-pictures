@@ -47,19 +47,17 @@ router.post('/', checkAuth, (req, res) => {
         password: req.body.password
     })
     .then(userData => {
-        if (!userData) {
-            res.status(400).json({ message: 'Unable to create user.' });
-            return;
-        }
+        req.session.save(() => {
+            req.session.user_id = dbUserData.id;
+            req.session.username = dbUserData.username;
+            req.session.loggedIn = true;
 
-        res.status(200).json(userData);
+            res.json(dbUserData)
+        })
     })
     .catch(err => {
         console.log(err);
-        res.status(500).json({
-            message: 'The system was uanble to process your request.',
-            err
-        })
+        res.status(500).json(err);
     });
 });
 
