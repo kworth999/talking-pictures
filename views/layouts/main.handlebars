@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Talkin' Movies</title>
-        <link rel="stylesheet" href="../../public/stylesheets/tailwind.css">
+        <link rel="stylesheet" href="../../Html/assets/css/styles.css">
     </head>
 
     <body>
@@ -18,7 +18,7 @@
                         {{#if loggedIn}}
                         <a href="" id="logout">Logout</a>
                         {{else}}
-                        <a href="/public/javascript/login.js">Login</a>
+                        <a href="../../public/javascript/login.js">Login</a>
                         {{/if}}
                     </nav>
                 </div>
@@ -31,7 +31,7 @@
             </main>
         </div>
         {{#if loggedIn}}
-        <script src="/public/javascript/logout.js"></script>
+        <script src="../../public/javascript/logout.js"></script>
         {{/if}}
     </body>
 </html>
