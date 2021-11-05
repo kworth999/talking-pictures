@@ -1,10 +1,10 @@
-{{#if posts.length}}
+{{#if reviews.length}}
 <section>
     <h2>Your Reviews</h2>
     <ol class="post-list">
-        {{#each posts as |post|}}
+        {{#each reviews as |review|}}
         <li>
-            {{> dashboard-post-info post}}
+            {{> dashboard-post-info review}}
         </li>
         {{/each}}
     </ol>

@@ -5,13 +5,13 @@ const withAuth = require('../../utils/auth');
 // Get all users - /api/review/
 router.get('/', /*checkAuth,*/ (req, res) => {
     Review.findAll()
-    .then(reviewData => {
-        if (!reviewData) {
+    .then(dbReviewData => {
+        if (!dbReviewData) {
             res.status(400).json({ message: 'Unable to find any reviews' });
             return;
         }
 
-        res.status(200).json(reviewData);
+        res.status(200).json(dbReviewData);
 // Get all reviews - /api/review/
 // router.get('/', (req, res) => {
 //     Review.findAll({
@@ -24,7 +24,10 @@ router.get('/', /*checkAuth,*/ (req, res) => {
 //             }
 //         ]
     })
-    .then(dbReviewData => res.json(dbReviewData))
+    .then(dbReviewData => {
+        const reviews = dbReviewData.map(reviews => reviews.get({ plain: true }));
+        res.render('dashboard', { reviews, loggedIn: true });
+    })
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
