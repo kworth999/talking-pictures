@@ -41,7 +41,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST create user - /api/user
-router.post('/', checkAuth, (req, res) => {
+router.post('/', withAuth, (req, res) => {
     User.create({
         username: req.body.username,
         password: req.body.password
@@ -62,7 +62,7 @@ router.post('/', checkAuth, (req, res) => {
 });
 
 // PUT update user - /api/user/:id
-router.put('/:id', checkAuth, (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     User.update(req.body, {
         where: { id: req.params.id }
     })
@@ -84,7 +84,7 @@ router.put('/:id', checkAuth, (req, res) => {
 });
 
 // DELETE user - /api/user/:id
-router.delete('/:id', checkAuth, (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     User.destroy({
         where: { id: req.params.id }
     })
