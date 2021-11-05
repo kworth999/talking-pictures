@@ -1,29 +1,22 @@
 const router = require('express').Router();
 const { User, Review } = require('../../models/index');
-const checkAuth = require('../../utils/auth');
+const withAuth = require('../../utils/auth');
 
 // Get all users - /api/user/
-router.get('/', checkAuth, (req, res) => {
-    User.findAll()
-    .then(userData => {
-        if (!userData) {
-            res.status(400).json({ message: 'Unable to find any users' });
-            return;
-        }
-
-        res.status(200).json(userData);
+router.get('/', (req, res) => {
+    User.findAll({
+        attributes: { exclude: ['password'] }
     })
+    .then(dbUserData => res.json(dbUserData))
     .catch(err => {
         console.log(err);
-        res.status(500).json({
-            message: 'The system was unable to process your request.',
-            err
-        })
+        res.status(500).json(err);
     });
 });
 
+
 // Get single user - /api/user/:id
-router.get('/:id', checkAuth, (req, res) => {
+router.get('/:id', (req, res) => {
     User.findOne({
         include: [
             {

@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const { User, Review } = require('../../models/index');
-const checkAuth = require('../../utils/auth');
+const withAuth = require('../../utils/auth');
 
 // Get all users - /api/review/
-router.get('/', checkAuth, (req, res) => {
+router.get('/', (req, res) => {
     Review.findAll()
     .then(reviewData => {
         if (!reviewData) {
