@@ -2,23 +2,22 @@ const router = require('express').Router();
 const { User, Review } = require('../../models/index');
 const withAuth = require('../../utils/auth');
 
-// Get all users - /api/review/
+// Get all reviews - /api/review/
 router.get('/', (req, res) => {
-    Review.findAll()
-    .then(reviewData => {
-        if (!reviewData) {
-            res.status(400).json({ message: 'Unable to find any reviews' });
-            return;
-        }
-
-        res.status(200).json(reviewData);
+    Review.findAll({
+        attributes: [ 'id', 'imdb_id', 'user_id', 'rating', 'comment' ],
+        order: [[ 'created_at', 'DESC' ]],
+        include: [ 
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
     })
+    .then(dbReviewData => res.json(dbReviewData))
     .catch(err => {
         console.log(err);
-        res.status(500).json({
-            message: 'The system was unable to process your request.',
-            err
-        })
+        res.status(500).json(err);
     });
 });
 

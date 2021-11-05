@@ -125,8 +125,8 @@ router.post('/login', (req, res) => {
         }
 
         req.session.save(() => {
-            req.session.user_id = userData.id;
-            req.session.username = userData.username;
+            req.session.user_id = dbUserData.id;
+            req.session.username = dbUserData.username;
             req.session.loggedIn = true;
             // Frontend TODO
             
