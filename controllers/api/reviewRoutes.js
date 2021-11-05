@@ -21,22 +21,44 @@ router.get('/', (req, res) => {
     });
 });
 
-// Create review
-router.post('/', checkAuth, (req, res) => {
-    Review.create({
-        ...req.body
-    })
-    .then(reviewData => {
-        if (!reviewData) {
-            res.status(400).json({message: 'Could not create review.'});
-            return;
+//get one review
+router.get('/:id', (req, res) => {
+    Review.findOne({
+      where: {
+        id: req.params.id
+      },
+      attributes: [ 'id', 'imdb_id', 'user_id', 'rating', 'comment' ],
+      include: [
+        {
+          model: User,
+          attributes: ['username']
         }
-
-        res.status(200).json(reviewData)
+      ]
     })
-    .catch(error => {
-        console.log(error);
-        res.status(500).json({ message: 'The system was unable to process your request.'})
+      .then(dbReviewData => {
+        if (!dbReviewData) {
+          res.status(404).json({ message: 'No post found with this id' });
+          return;
+        }
+        res.json(dbReviewData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
+
+// Create review
+router.post('/', withAuth, (req, res) => {
+    Review.create({
+        title: req.body.title,
+        review_text: req.body.review_text,
+        user_id: req.body.user_id
+    })
+    .then(dbReviewData => res.json(dbReviewData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err); 
     });
 });
 
