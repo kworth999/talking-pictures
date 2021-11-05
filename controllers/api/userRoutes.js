@@ -18,26 +18,25 @@ router.get('/', (req, res) => {
 // Get single user - /api/user/:id
 router.get('/:id', (req, res) => {
     User.findOne({
+        attributes: { exclude: ['password'] },
+        where: { 
+            id: req.params.id
+        },
         include: [
             {
-                model: Review
+                model: Review,
+                attributes: [ 'imdb_id', 'user_id', 'rating', 'comment' ]
             }
         ]
     })
-    .then(userData => {
-        if (!userData) {
-            res.status(400).json({ message: 'Unable to find any users using the provided ID.' });
-            return;
+    .then(dbUserData => {
+        if (!dbUserData) {
+            res.status(404).json({ message: 'No user found with this id' });
         }
-
-        res.status(200).json(userData);
     })
     .catch(err => {
         console.log(err);
-        res.status(500).json({
-            message: 'The system was uanble to process your request.',
-            err
-        })
+        res.status(500).json(err);
     });
 });
 
