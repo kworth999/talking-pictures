@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
-const { Post, User } = require('../models');
+const sequelize = require('../../config/connection');
+const { Post, User } = require('../../models');
 
 router.get('/', (req, res) => {
     console.log('=====================');
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     ],
     include: [
         {
-            model: User, 
+            model: User,
             attributes: ['username']
         }
     ]
@@ -33,3 +33,5 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
     });
 });
+
+module.exports = router;
