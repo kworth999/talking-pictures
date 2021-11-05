@@ -66,15 +66,15 @@ router.post('/', withAuth, (req, res) => {
 router.get('/', checkAuth, (req, res) => {
     Review.findAll({
         where: {
-            imdb_id
+            imdb_id: req.params.imdb_id
         }
     })
-    .then(reviewData => {
-        if (!reviewData) {
+    .then(dbReviewData => {
+        if (!dbReviewData) {
             res.status(400).json({ message: 'Unable to find reviews using the provided user ID.'});
             return;
         }
-        res.status(200).json(reviewData);
+        res.status(200).json(dbReviewData);
     })
     .catch(error => {
         console.log(error);
@@ -93,12 +93,12 @@ router.get('/user/:user_id', checkAuth, (req, res) => {
             user_id: req.params.user_id
         }
     })
-    .then(reviewData => {
-        if (!reviewData) {
+    .then(dbReviewData => {
+        if (!dbReviewData) {
             res.status(400).json({ message: 'Unable to find reviews using the provided user ID.'});
             return;
         }
-        res.status(200).json(reviewData);
+        res.status(200).json(dbReviewData);
     })
     .catch(error => {
         console.log(error);
@@ -116,12 +116,12 @@ router.get('/user/:user_id', checkAuth, (req, res) => {
             user_id: req.params.user_id
         }
     })
-    .then(reviewData => {
-        if (!reviewData) {
+    .then(dbReviewData => {
+        if (!dbReviewData) {
             res.status(400).json({ message: 'Unable to find reviews using the provided user ID.'});
             return;
         }
-        res.status(200).json(reviewData);
+        res.status(200).json(dbReviewData);
     })
     .catch(error => {
         console.log(error);
@@ -139,13 +139,13 @@ router.get('/:id', checkAuth, (req, res) => {
             id
         }
     })
-    .then(reviewData => {
-        if (!reviewData) {
+    .then(dbReviewData => {
+        if (!dbReviewData) {
             res.status(400).json({message: 'Could not find review using provided ID.'});
             return;
         }
 
-        res.status(200).json(reviewData)
+        res.status(200).json(dbReviewData)
     })
     .catch(error => {
         console.log(error);
