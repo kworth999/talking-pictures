@@ -6,11 +6,10 @@ router.get('/', (req, res) => {
     console.log('=====================');
     Review.findAll({ 
         attributes: [
-        'id',
-        'post_url', 
-        'title',
-        'body',
-        'score',
+        'id', 
+        'rating',
+        'comment',
+        'user_id',
         'created_at'
     ],
     include: [
