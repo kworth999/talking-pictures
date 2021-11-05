@@ -3,7 +3,7 @@ const { User, Review } = require('../../models/index');
 const checkAuth = require('../../utils/auth');
 
 // Get all users - /api/user/
-router.get('/', checkAuth, (req, res) => {
+router.get('/', /*checkAuth,*/ (req, res) => {
     User.findAll()
     .then(userData => {
         if (!userData) {
@@ -23,7 +23,7 @@ router.get('/', checkAuth, (req, res) => {
 });
 
 // Get single user - /api/user/:id
-router.get('/:id', checkAuth, (req, res) => {
+router.get('/:id', /*checkAuth,*/ (req, res) => {
     User.findOne({
         include: [
             {
@@ -49,7 +49,7 @@ router.get('/:id', checkAuth, (req, res) => {
 });
 
 // POST create user - /api/user
-router.post('/', checkAuth, (req, res) => {
+router.post('/', /*checkAuth,*/ (req, res) => {
     User.create({
         username: req.body.username,
         password: req.body.password
@@ -72,7 +72,7 @@ router.post('/', checkAuth, (req, res) => {
 });
 
 // PUT update user - /api/user/:id
-router.put('/:id', checkAuth, (req, res) => {
+router.put('/:id', /*checkAuth,*/ (req, res) => {
     User.update(req.body, {
         where: { id: req.params.id }
     })
@@ -94,7 +94,7 @@ router.put('/:id', checkAuth, (req, res) => {
 });
 
 // DELETE user - /api/user/:id
-router.delete('/:id', checkAuth, (req, res) => {
+router.delete('/:id', /*checkAuth,*/ (req, res) => {
     User.destroy({
         where: { id: req.params.id }
     })
@@ -139,13 +139,13 @@ router.post('/login', (req, res) => {
             req.session.username = userData.username;
             req.session.loggedIn = true;
             // Frontend TODO
-            
+            res.redirect('/homepage');
             // Redirect user to page once logged in
-            res.status(200).json({
-                message: 'Successfully logged in.',
+            // res.status(200).json({
+            //     message: 'Successfully logged in.',
     
-                session: req.session
-            });
+            //     session: req.session
+            // });
         });
 
         

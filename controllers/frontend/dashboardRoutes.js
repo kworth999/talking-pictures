@@ -5,7 +5,7 @@ const withAuth = require('../../utils/auth');
 router.get('/', withAuth, (req, res) => {
     const userId = req.session.user_id;
     const userName = req.session.username;
-    res.render('dashboard', { userId, userName, loggedIn: req.session.loggedIn});
+    res.render('index', { userId, userName, loggedIn: req.session.loggedIn});
 });
 
 module.exports = router;
