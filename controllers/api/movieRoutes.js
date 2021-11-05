@@ -2,13 +2,13 @@ const router = require('express').Router();
 const { User, Review } = require('../../models/index');
 const checkAuth = require('../../utils/auth');
 
-$(document).ready(() => {
-    $('#searchForm').on('submit', (e) => {
-        let searchText = $('#searchText').val();
-        getMovies(searchText);
-        e.preventDefault();
-    });
-});
+// $(document).ready(() => {
+//     $('#searchForm').on('submit', (e) => {
+//         let searchText = $('#searchText').val();
+//         getMovies(searchText);
+//         e.preventDefault();
+//     });
+// });
 
 // Get Movies
 router.get('/', checkAuth, (req, res) => {
