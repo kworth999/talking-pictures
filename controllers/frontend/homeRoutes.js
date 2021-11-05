@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { Post, User } = require('../../models');
+const { Review, User } = require('../../models');
 
 router.get('/', (req, res) => {
     console.log('=====================');
-    Post.findAll({ 
+    Review.findAll({ 
         attributes: [
         'id',
         'post_url', 
