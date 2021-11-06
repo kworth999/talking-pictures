@@ -140,17 +140,13 @@ router.post('/login', (req, res) => {
             // Frontend TODO
             res.json({ user: dbUserData, message: 'You are finally logged in!' });
             // Redirect user to page once logged in
-            // res.status(200).json({
-            //     message: 'Successfully logged in.',
-    
-            //     session: req.session
-            // });
+
         });
     })
     .catch(err => {
         console.log(err);
         res.status(500).json({
-            message: 'The system was uanble to process your request.',
+            message: 'The system was unable to process your request.',
             err
         });
     });

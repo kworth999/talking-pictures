@@ -1,11 +1,30 @@
 const router = require('express').Router();
-const withAuth = require('../../utils/auth');
+const { User, Review } = require('../../models');
+const checkAuth = require('../../utils/auth');
 
-// /dashboard/
-router.get('/', withAuth, (req, res) => {
-    const userId = req.session.user_id;
-    const userName = req.session.username;
-    res.render('index', { userId, userName, loggedIn: req.session.loggedIn});
+// /dashboard get all users posts
+router.get('/', checkAuth, (req, res) => {
+    Review.findAll({
+        where: {
+            user_id: req.session.user_id
+        },
+        attributes: [ 'id', 'imdb_id', 'user_id', 'rating', 'comment' ],
+        order: [[ 'created_at', 'DESC' ]],
+        include: [
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
+    })
+    .then(dbReviewData => {
+        const reviews = dbReviewData.map(review => review.get({ plain: true }));
+        res.render('dashboard', { reviews, loggedIn: true });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 module.exports = router;
