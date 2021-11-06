@@ -27,4 +27,36 @@ router.get('/', checkAuth, (req, res) => {
     });
 });
 
+//get a single review by review id
+router.get('/edit/:id', checkAuth, (req, res) => {
+    Review.findOne({ 
+        where: { 
+            id: req.params.id
+        },
+        attributes: [ 'id', 'imdb_id', 'user_id', 'rating', 'comment' ],
+        include: [ 
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
+    })
+    .then(dbReviewData => {
+        if (!dbReviewData) {
+            res.status(404).json({ message: 'No post found with this id' });
+            return;
+        }
+        const reviews = dbReviewData.get({ plain: true });
+        res.render('edit-post', { reviews, loggedIn: true });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
+router.get('/new', (req, res) => {
+    res.render('new-post');
+});
+
 module.exports = router;
