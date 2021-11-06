@@ -16,10 +16,6 @@ Review.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        // imdb_id: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false
-        // },
         // user_id: {
         //     type: DataTypes.INTEGER,
         //     allowNull: false,
@@ -30,7 +26,11 @@ Review.init(
         // },
         rating: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                min: 0,
+                max: 100
+            }
         }, 
         review: {
             type: DataTypes.TEXT,

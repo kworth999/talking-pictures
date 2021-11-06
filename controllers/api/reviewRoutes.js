@@ -17,7 +17,7 @@ router.get('/', /*checkAuth,*/ (req, res) => {
 // Get all reviews - /api/review/
 // router.get('/', (req, res) => {
 //     Review.findAll({
-//         attributes: [ 'id', 'imdb_id', 'user_id', 'rating', 'comment' ],
+//         attributes: [ 'id', 'title', 'user_id', 'rating', 'comment' ],
 //         order: [[ 'created_at', 'DESC' ]],
 //         include: [ 
 //             {
@@ -67,7 +67,7 @@ router.post('/', /*checkAuth,*/ (req, res) => {
 router.get('/', /*checkAuth,*/ (req, res) => {
     Review.findAll({
         where: {
-            imdb_id
+            title
         }
     })
     .then(reviewData => {

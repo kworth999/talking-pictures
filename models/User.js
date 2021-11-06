@@ -19,13 +19,16 @@ User.init(
         username: {
             type: DataTypes.STRING,
             allowNull: false,
+            validate: {
+                len: [4, 20]
+            },
             unique: true
         },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: [4]
+                len: [5]
             }
         }
     }, 

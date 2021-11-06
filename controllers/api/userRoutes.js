@@ -34,7 +34,7 @@ router.get('/:id', /*checkAuth,*/ (req, res) => {
         include: [
             {
                 model: Review,
-                attributes: [ 'imdb_id', 'user_id', 'rating', 'comment' ]
+                attributes: [ 'title', 'user_id', 'rating', 'review' ]
             }
         ]
     })
