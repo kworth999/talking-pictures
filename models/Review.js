@@ -28,7 +28,7 @@ Review.init(
             type: DataTypes.INTEGER,
             allowNull: false
         }, 
-        comment: {
+        review: {
             type: DataTypes.TEXT,
             allowNull: false
         }
