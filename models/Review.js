@@ -12,10 +12,14 @@ Review.init(
             primaryKey: true,
             autoIncrement: true
         },
-        imdb_id: {
+        title: {
             type: DataTypes.STRING,
             allowNull: false
         },
+        // imdb_id: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false
+        // },
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,

@@ -40,7 +40,8 @@ router.get('/', /*checkAuth,*/ (req, res) => {
 router.post('/', /*checkAuth,*/ (req, res) => {
     Review.create({
         title: req.body.title,
-        post_text: req.body.post_text,
+        rating: req.body.rating,
+        review: req.body.review,
         user_id: req.session.user_id
     })
         .then(dbReviewData => res.json(dbReviewData))
