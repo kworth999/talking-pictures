@@ -4,7 +4,7 @@ const router = require('express').Router();
 router.use('/user', require('./userRoutes'));
 
 // Review API routes - /api/review
-router.use('/review', require('./reviewRoutes'));
+router.use('/reviews', require('./reviewRoutes'));
 
 // Movie API routes - /api/review
 // router.use('/movie', require('./movieRoutes'));

@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { User, Review } = require('../../models/index');
 const withAuth = require('../../utils/auth');
+const { Model, DataTypes } = require ('sequelize');
+const sequelize = require('../../config/connection');
 
 // Get all users - /api/review/
 router.get('/', /*checkAuth,*/ (req, res) => {
@@ -37,20 +39,28 @@ router.get('/', /*checkAuth,*/ (req, res) => {
 // Create review
 router.post('/', /*checkAuth,*/ (req, res) => {
     Review.create({
-        ...req.body
+        title: req.body.title,
+        post_text: req.body.post_text,
+        user_id: req.session.user_id
     })
-    .then(reviewData => {
-        if (!reviewData) {
-            res.status(400).json({message: 'Could not create review.'});
-            return;
-        }
+        .then(dbReviewData => res.json(dbReviewData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 
-        res.status(200).json(reviewData)
-    })
-    .catch(error => {
-        console.log(error);
-        res.status(500).json({ message: 'The system was unable to process your request.'})
-    });
+    // .then(reviewData => {
+    //     if (!reviewData) {
+    //         res.status(400).json({message: 'Could not create review.'});
+    //         return;
+    //     }
+
+    //     res.status(200).json(reviewData)
+    // })
+    // .catch(error => {
+    //     console.log(error);
+    //     res.status(500).json({ message: 'The system was unable to process your request.'})
+    // });
 });
 
 // Get all reviews by movie ID
