@@ -46,8 +46,8 @@ router.get('/edit/:id', checkAuth, (req, res) => {
             res.status(404).json({ message: 'No post found with this id' });
             return;
         }
-        const reviews = dbReviewData.get({ plain: true });
-        res.render('edit-post', { reviews, loggedIn: true });
+        const review = dbReviewData.get({ plain: true });
+        res.render('edit-post', { review, loggedIn: true });
     })
     .catch(err => {
         console.log(err);

@@ -3,12 +3,12 @@ const sequelize = require('../../config/connection');
 const { Review, User } = require('../../models');
 
 router.get('/', (req, res) => {
-    console.log('=====================');
     Review.findAll({ 
         attributes: [
         'id', 
+        'title',
         'rating',
-        'comment',
+        'review',
         'user_id',
         'created_at'
     ],
@@ -21,7 +21,6 @@ router.get('/', (req, res) => {
     })
     .then(dbPostData => {
         const posts = dbPostData.map(post => post.get({ plain: true }));
-
         res.render('homepage', {
             posts,
             loggedIn: req.session.loggedIn
@@ -42,11 +41,18 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/post/:id', (req, res) => {
-    Reviews.findOne({
+    Review.findOne({
         where: { 
             id: req.params.id
         },
-        attributes: [ 'id', 'title', 'user_id', 'rating', 'review' ],
+        attributes: [
+            'id', 
+            'title',
+            'rating',
+            'review',
+            'user_id',
+            'created_at'
+        ],
         include: [
         {
             model: User,
