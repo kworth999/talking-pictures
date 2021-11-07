@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 // User API routes - /api/user
-router.use('/user', require('./userRoutes'));
+router.use('/user', require('./user-routes'));
 
 // Review API routes - /api/review
 router.use('/reviews', require('./reviewRoutes'));

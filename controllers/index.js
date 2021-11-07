@@ -1,13 +1,12 @@
 const router = require('express').Router();
-const frontEndRoutes = require('./frontend');
+const apiRoutes = require('./api');
+const homeRoutes = require('./frontend/homeRoutes');
+const dashboardRoutes = require('./frontend/dashboardRoutes');
 
-// API routes - /api/
-router.use('/api', require('./api'));
+router.use('/.api', apiRoutes);
+router.use('/', homeRoutes);
+router.use('/dashboard', dashboardRoutes);
 
-// views routes
-router.use('/', frontEndRoutes);
-
-// Catch and handle all other unknown routes
 router.use((req, res) => {
     res.status(404).end();
 });
