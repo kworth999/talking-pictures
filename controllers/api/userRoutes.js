@@ -1,17 +1,17 @@
 const router = require('express').Router();
 const { User, Review } = require('../../models/index');
-const withAuth = require('../../utils/auth');
+const checkAuth = require('../../utils/auth');
 
 // Get all users - /api/user/
-router.get('/', /*checkAuth,*/ (req, res) => {
+router.get('/', checkAuth, (req, res) => {
     User.findAll()
-    .then(userData => {
-        if (!userData) {
+    .then(dbUserData => {
+        if (!dbUserData) {
             res.status(400).json({ message: 'Unable to find any users' });
             return;
         }
 
-        res.status(200).json(userData);
+        res.status(200).json(dbUserData);
 // router.get('/', (req, res) => {
 //     User.findAll({
 //         attributes: { exclude: ['password'] }
@@ -25,7 +25,7 @@ router.get('/', /*checkAuth,*/ (req, res) => {
 
 
 // Get single user - /api/user/:id
-router.get('/:id', /*checkAuth,*/ (req, res) => {
+router.get('/:id', checkAuth, (req, res) => {
     User.findOne({
         attributes: { exclude: ['password'] },
         where: { 
@@ -34,7 +34,7 @@ router.get('/:id', /*checkAuth,*/ (req, res) => {
         include: [
             {
                 model: Review,
-                attributes: [ 'title', 'user_id', 'rating', 'review' ]
+                attributes: [ 'title', 'rating', 'review', 'user_id' ]
             }
         ]
     })
@@ -50,12 +50,12 @@ router.get('/:id', /*checkAuth,*/ (req, res) => {
 });
 
 // POST create user - /api/user
-router.post('/', /*checkAuth,*/ (req, res) => {
+router.post('/', checkAuth, (req, res) => {
     User.create({
         username: req.body.username,
         password: req.body.password
     })
-    .then(userData => {
+    .then(dbUserData => {
         req.session.save(() => {
             req.session.user_id = dbUserData.id;
             req.session.username = dbUserData.username;
@@ -71,17 +71,17 @@ router.post('/', /*checkAuth,*/ (req, res) => {
 });
 
 // PUT update user - /api/user/:id
-router.put('/:id', /*checkAuth,*/ (req, res) => {
+router.put('/:id', checkAuth, (req, res) => {
     User.update(req.body, {
         where: { id: req.params.id }
     })
-    .then(userData => {
-        if (!userData) {
+    .then(dbUserData => {
+        if (!dbUserData) {
             res.status(400).json({ message: 'Unable to update user.' });
             return;
         }
 
-        res.status(200).json(userData);
+        res.status(200).json(dbUserData);
     })
     .catch(err => {
         console.log(err);
@@ -93,17 +93,17 @@ router.put('/:id', /*checkAuth,*/ (req, res) => {
 });
 
 // DELETE user - /api/user/:id
-router.delete('/:id', /*checkAuth,*/ (req, res) => {
+router.delete('/:id', checkAuth, (req, res) => {
     User.destroy({
         where: { id: req.params.id }
     })
-    .then(userData => {
-        if (!userData) {
+    .then(dbUserData => {
+        if (!dbUserData) {
             res.status(400).json({ message: 'Unable to delete user.' });
             return;
         }
 
-        res.status(200).json(userData);
+        res.status(200).json(dbUserData);
     })
     .catch(err => {
         console.log(err);
@@ -123,7 +123,7 @@ router.post('/login', (req, res) => {
     })
     .then(dbUserData => {
         if (!dbUserData) {
-            res.status(400).json({ message: 'Unable to find a user using the provided user ID.' });
+            res.status(400).json({ message: 'Username not found' });
             return;
         }
 
@@ -131,6 +131,7 @@ router.post('/login', (req, res) => {
         const validPassword = dbUserData.checkPassword(req.body.password);
         if (!validPassword) {
             res.status(400).json({ message: 'Incorrect password!' });
+            return;
         }
 
         req.session.save(() => {
