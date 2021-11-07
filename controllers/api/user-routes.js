@@ -4,6 +4,7 @@ const checkAuth = require('../../utils/auth');
 
 // Get all users - /api/user/
 router.get('/', checkAuth, (req, res) => {
+    console.log("howdy");
     User.findAll()
     .then(dbUserData => {
         if (!dbUserData) {
@@ -116,8 +117,10 @@ router.delete('/:id', checkAuth, (req, res) => {
 
 // Login - /api/user/login
 router.post('/login', (req, res) => {
+    console.log("hello");
     User.findOne({
-        where: {
+        where: 
+        {
             username: req.body.username
         }
     })
@@ -126,9 +129,10 @@ router.post('/login', (req, res) => {
             res.status(400).json({ message: 'Username not found' });
             return;
         }
-
+        console.log(req.body.password);
         // Validate Password
         const validPassword = dbUserData.checkPassword(req.body.password);
+        console.log(validPassword);
         if (!validPassword) {
             res.status(400).json({ message: 'Incorrect password!' });
             return;
