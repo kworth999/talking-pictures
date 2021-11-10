@@ -34,7 +34,8 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 // Use defined routes
-app.use(require('./controllers'));
+const controllers = require('./controllers');
+app.use("/", controllers);
 
 // Define port
 const PORT = process.env.PORT || 3001;

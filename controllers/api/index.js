@@ -1,15 +1,12 @@
 const router = require('express').Router();
 
-// User API routes - /api/user
-router.use('/user', require('./user-routes'));
+const userRoutes = require('./user-routes');
+// // const reviewRoutes = require('./review-routes');
 
-// Review API routes - /api/review
-router.use('/reviews', require('./reviewRoutes'));
+router.use('/user', userRoutes);
+// router.use('/reviews', reviewRoutes);
 
-// Movie API routes - /api/review
-// router.use('/movie', require('./movieRoutes'));
 
-// Catch and handle all other unknown routes
 router.use((req, res) => {
     res.status(404).end();
 });
