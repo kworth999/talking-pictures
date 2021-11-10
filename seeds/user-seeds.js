@@ -1,6 +1,6 @@
 const { User } = require('../models');
 
-const Users = [
+const userdata = [
     {
         username: 'johnny88',
         password: 'password123'
@@ -17,7 +17,7 @@ const Users = [
 
 ];
 
-const seedUsers = () => User.bulkCreate(Users, {individualHoooks: true});
+const seedUsers = () => userdata.bulkCreate(userdata, {individualHoooks: true});
 
 module.exports = seedUsers;
 
