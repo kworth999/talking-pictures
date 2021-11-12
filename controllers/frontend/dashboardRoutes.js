@@ -4,6 +4,7 @@ const checkAuth = require('../../utils/auth');
 
 // /dashboard get all users posts
 router.get('/', checkAuth, (req, res) => {
+    console.log('DASHBOARD ROUTE HIT')
     Review.findAll({
         where: {
             user_id: req.session.user_id

@@ -50,13 +50,25 @@ router.get('/:id', (req, res) => {
 });
 
 // Create review
-router.post('/', checkAuth, (req, res) => {
-    Review.create({
+router.post('/', (req, res) => {
+
+    console.log({
+        user_id: req.session,
         title: req.body.title,
         rating: req.body.rating,
         review: req.body.review
     })
-        .then(dbReviewData => res.json(dbReviewData))
+    
+    Review.create({
+        user_id: req.session.user_id,
+        title: req.body.title,
+        rating: req.body.rating,
+        review: req.body.review
+    })
+        .then(dbReviewData => {
+            // res.json(dbReviewData)
+            res.redirect('/dashboard');
+        })
         .catch(err => {
             console.log(err);
             res.status(500).json(err);

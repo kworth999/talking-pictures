@@ -1,5 +1,6 @@
 const seedUsers = require('./user-seeds');
 const seedReviews = require('./review-seeds');
+const bcrypt = require('bcrypt');
 const { User } = require('../models');
 const sequelize = require('../config/connection');
 
@@ -15,19 +16,17 @@ const seedAll = async () => {
   const Users = [
     {
         username: 'johnny88',
-        password: 'password123'
+        password: await bcrypt.hash('password123', 5)
     },
     {
         username: 'jessica2',
-        password: 'password123'
+        password: await bcrypt.hash('password123', 5)
     },
     {
         username: 'alan01',
-        password: 'password123'
+        password: await bcrypt.hash('password123', 5)
     }
-
-
-];
+  ];
 
   sequelize
   .sync({ force: false })

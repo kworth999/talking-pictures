@@ -3,8 +3,8 @@ const { User, Review } = require('../../models/index');
 const checkAuth = require('../../utils/auth');
 
 // Get all users - /api/user/
-router.get('/', checkAuth, (req, res) => {
-    console.log("howdy");
+router.get('/', (req, res) => {
+   
     User.findAll()
     .then(dbUserData => {
         if (!dbUserData) {
@@ -51,7 +51,7 @@ router.get('/:id', checkAuth, (req, res) => {
 });
 
 // POST create user - /api/user
-router.post('/', checkAuth, (req, res) => {
+router.post('/', (req, res) => {
     User.create({
         username: req.body.username,
         password: req.body.password
@@ -117,7 +117,7 @@ router.delete('/:id', checkAuth, (req, res) => {
 
 // Login - /api/user/login
 router.post('/login', (req, res) => {
-    console.log("hello");
+    
     User.findOne({
         where: 
         {
@@ -143,9 +143,9 @@ router.post('/login', (req, res) => {
             req.session.username = dbUserData.username;
             req.session.loggedIn = true;
             // Frontend TODO
-            res.json({ user: dbUserData, message: 'You are finally logged in!' });
+            // res.json({ user: dbUserData, message: 'You are finally logged in!' });
             // Redirect user to page once logged in
-
+            res.redirect('/dashboard');
         });
     })
     .catch(err => {

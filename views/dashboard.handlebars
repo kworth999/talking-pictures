@@ -1,8 +1,8 @@
-{{#if review.length}}
+{{#if reviews.length}}
 <section>
     <h2>Your Reviews</h2>
     <ol class="post-list">
-        {{#each review as |review|}}
+        {{#each reviews as |review|}}
         <li>
             {{> dashboard-post-info review}}
         </li>
