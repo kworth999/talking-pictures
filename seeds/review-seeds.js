@@ -1,6 +1,6 @@
-const { Reviews } = require('../models');
+const { Review } = require('../models');
 
-const reviews = [
+const reviewData = [
     {
         title: 'The Godfather',
         rating: 95,
@@ -21,6 +21,6 @@ const reviews = [
     }
 ];
 
-const seedReviews = () => Reviews.bulkCreate(reviews);
+const seedReviews = () => Review.bulkCreate(reviewData);
 
 module.exports = seedReviews ;
