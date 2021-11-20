@@ -37,7 +37,7 @@ router.get('/', checkAuth, (req, res) => {
 });
 
 //get a single review by review id
-router.get('/reviews/:id', checkAuth, (req, res) => {
+router.get('/review/:id', checkAuth, (req, res) => {
     Review.findOne({ 
         where: { 
             id: req.params.id
