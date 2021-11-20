@@ -4,17 +4,16 @@
     </h2>
     <form class="edit-post-form">
         <div>
-            <input name="post-title" type="text" value="{{post.title}}" />
+            <input name="post-title" type="text" value="{{review.title}}" />
         </div>
         <div>
-            Reviewed by you on {{format_date post.created_at}}  
-            |
-            {{post.comments.length}} {{ "comment" post.comments.length}}
+            Reviewed by you on {{format_date review.created_at}}  
+            {{!-- {{post.comments.length}} {{ "comment" post.comments.length}} --}}
         </div>
         <div>
-            <label for="post-text">Post Review</label>
+            <label for="post-text">Movie Review</label>
             <textarea name="post-text" id="post-tet">
-                {{post.post_text}}
+                {{review.review}}
             </textarea>
         </div>
         <button type="submit">Save Changes</button>

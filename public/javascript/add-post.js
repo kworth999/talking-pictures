@@ -19,7 +19,7 @@ async function newFormHandler(event) {
         headers: { 'Content-Type': 'application/json' }
     });
 
-    console.log(title, rating, review);
+    console.log(title, rating, review, response);
 
     if (response.ok) {
         document.location.replace('/dashboard');

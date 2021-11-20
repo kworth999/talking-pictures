@@ -133,6 +133,7 @@ router.post('/login', (req, res) => {
         // Validate Password
         const validPassword = dbUserData.checkPassword(req.body.password);
         console.log(validPassword);
+        console.log(dbUserData);
         if (!validPassword) {
             res.status(400).json({ message: 'Incorrect password!' });
             return;
@@ -143,9 +144,10 @@ router.post('/login', (req, res) => {
             req.session.username = dbUserData.username;
             req.session.loggedIn = true;
             // Frontend TODO
-            // res.json({ user: dbUserData, message: 'You are finally logged in!' });
+            res.json({ user: dbUserData, message: 'You are finally logged in!' });
+            console.log('This is working');
             // Redirect user to page once logged in
-            res.redirect('/dashboard');
+            // res.redirect('/dashboard');
         });
     })
     .catch(err => {
