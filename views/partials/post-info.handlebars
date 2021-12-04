@@ -1,14 +1,17 @@
 <article class="post">
     <div class="post-head">
         <div class="title">
-            <a href="/review/{{id}}">{{title}}</a>
+            <a class="movie" href="/post/{{id}}">{{title}}</a>
         </div>
         <div class="meta">
-            Posted By {{user.username}} on {{format_date created_at}} |
-            {{comments.length}} 
+            Posted By {{user.username}} on {{format_date created_at}} 
+            {{!-- {{comments.length}}  --}}
         </div>
     </div>
     <div class="post-review">
         {{review_text}}
     </div>
 </article>
+
+{{!-- {{if imdb.title === title}}
+<img src={{imdb.poster}}> --}}

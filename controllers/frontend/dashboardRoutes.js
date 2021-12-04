@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { default: axios } = require('axios');
 const { User, Review } = require('../../models');
 const checkAuth = require('../../utils/auth');
 
@@ -29,11 +28,6 @@ router.get('/', checkAuth, (req, res) => {
         console.log(err);
         res.status(500).json(err);
     });
-
-    // function getMovies() {
-    //     axios.get('http://www.omdbapi.com/?apikey=2f2afafe&s='+ Review.findOne({})
-    //     )
-    // }
 });
 
 //get a single review by review id
@@ -56,7 +50,7 @@ router.get('/review/:id', checkAuth, (req, res) => {
             return;
         }
         const review = dbReviewData.get({ plain: true });
-        res.render('edit-post', { review, loggedIn: true });
+        res.render('post-info', { review, loggedIn: true });
     })
     .catch(err => {
         console.log(err);

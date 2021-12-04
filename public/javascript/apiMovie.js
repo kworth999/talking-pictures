@@ -1,15 +1,10 @@
-const { default: axios } = require("axios");
-
-document.getElementById('#movie').on('submit', (e) => {
-    let searchText = document.getElementById('#movie').val();
-    getMovies(searchText);
-    e.preventDefault();
+let searchText = document.querySelectorAll('.movie');
+searchText.forEach(function (movie){
+    getMovies(movie.innerHTML);
 });
 
-function getMovies(searchText) {
-    axios.get('http://www.omdbapi.com/?apikey=2f2afafe&s='+searchText)
-    .then((response) => {
-        console.log(response);
-        let movies = response.data.Search;
-    })
+async function getMovies(searchText) {
+    let response = await fetch('http://www.omdbapi.com/?apikey=2f2afafe&s='+searchText)
+    let data = await response.json();
+    console.log(data.Search);
 }

@@ -7,5 +7,4 @@ const loginRoutes = require('./loginRoutes');
 
 router.use('/', loginRoutes);
 router.use('/dashboard', dashboardRoutes);
-router.use('/homepage', homeRoutes);
 module.exports = router;
