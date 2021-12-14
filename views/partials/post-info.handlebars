@@ -3,6 +3,7 @@
         <div class="title">
             <a class="movie" href="/post/{{id}}">{{title}}</a>
         </div>
+        
         <div class="meta">
             Posted By {{user.username}} on {{format_date created_at}} 
             {{!-- {{comments.length}}  --}}
@@ -13,9 +14,8 @@
     </div>
 </article>
 
-{{!-- {{if imdb.title === title}}
-<img src={{imdb.poster}}> --}}
 
-{{!-- {{#if imdb.title === title}}
-<img src = {{imdb.poster}}>
+
+{{!-- {{#if movie.title === title}}
+<img src = {{movie.poster}}>
 {{/if}} --}}

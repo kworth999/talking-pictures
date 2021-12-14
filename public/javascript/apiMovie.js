@@ -1,3 +1,5 @@
+// const movieSource = document.getElementById('movie-template').innerHTML;
+// const movieList = Handlebars.compile(movieSource);
 let searchText = document.querySelectorAll('.movie');
 searchText.forEach(function (movie){
     getMovies(movie.innerHTML);
@@ -8,12 +10,6 @@ async function getMovies(searchText) {
     let data = await response.json();
     console.log(data.Search);
     let movies = data.Search[0];
-    let output = '';
-    output += `
-    <div class="col-md-3">
-        <div class="well text-center">
-            <img src="${movies.Poster}">
-        </div>
-    </div>
-    `;
+    console.log(movies);
+    return movies;
 };
