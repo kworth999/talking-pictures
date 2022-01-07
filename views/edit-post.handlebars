@@ -6,15 +6,15 @@
         <div>
             <h3 name="post-title" type="text" value="{{review.title}}">Movie: {{review.title}}</h3>
         </div>
-        <div>
-            <h3>Reviewed by you on: {{format_date review.created_at}}</h3>
-        </div>
+        {{!-- <div>
+            <h3>Reviewed by you on: {{review.created_at}}</h3>
+        </div> --}}
         <div>
             <h3>Current Rating: {{review.rating}} </h3>
             <h3> Updated Rating: <input type="number"/> </h3>
         </div>
         <div>
-            <h3 for="post-text">Movie Review</h3>
+            <h3 for="post-text">Movie Review: </h3>
             <textarea name="post-text" id="post-text">{{review.review}}</textarea>
         </div>
         <button type="submit">Save Changes</button>

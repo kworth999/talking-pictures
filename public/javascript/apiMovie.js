@@ -8,8 +8,9 @@ searchText.forEach(function (movie){
 async function getMovies(searchText) {
     let response = await fetch('http://www.omdbapi.com/?apikey=2f2afafe&s='+searchText)
     let data = await response.json();
-    console.log(data.Search);
     let movies = data.Search[0];
+    console.log(data.Search);
     console.log(movies);
     return movies;
+    searchText.src = "${movies.Poster}"
 };

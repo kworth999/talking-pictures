@@ -91,7 +91,7 @@ router.get('/edit/:id', checkAuth, (req, res) => {
 });
 
 router.get('/new', (req, res) => {
-    res.render('new-review');
+    res.render('new-post');
 });
 
 module.exports = router;
