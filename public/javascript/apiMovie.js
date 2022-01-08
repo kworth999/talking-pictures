@@ -12,5 +12,5 @@ async function getMovies(searchText) {
     console.log(data.Search);
     console.log(movies);
     return movies;
-    searchText.src = "${movies.Poster}"
+    // searchText.src = "${movies.Poster}"
 };
