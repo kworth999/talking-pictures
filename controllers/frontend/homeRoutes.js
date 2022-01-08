@@ -7,7 +7,6 @@ router.get('/', (req, res) => {
     Review.findAll({ 
         attributes: [
         'id', 
-        'review.title',
         'rating',
         'review',
         'user_id',
@@ -48,7 +47,6 @@ router.get('/post/:id', (req, res) => {
         },
         attributes: [
             'id', 
-            'review.title',
             'rating',
             'review',
             'user_id',
