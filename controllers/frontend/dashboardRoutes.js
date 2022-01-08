@@ -10,7 +10,7 @@ router.get('/', checkAuth, (req, res) => {
         where: {
             user_id: req.session.user_id
         },
-        attributes: [ 'id', 'title', 'rating', 'review', 'user_id' ],
+        attributes: [ 'id', 'rating', 'review', 'user_id' ],
         order: [[ 'created_at', 'DESC' ]],
         include: [
             {
@@ -36,7 +36,7 @@ router.get('/review/:id', checkAuth, (req, res) => {
         where: { 
             id: req.params.id
         },
-        attributes: [ 'id', 'title', 'rating', 'review', 'user_id' ],
+        attributes: [ 'id', 'rating', 'review', 'user_id' ],
         include: [ 
             {
                 model: User,
@@ -64,7 +64,7 @@ router.get('/edit/:id', checkAuth, (req, res) => {
         where: {
             id: req.params.id
         },
-        attributes: ['id', 'title', 'rating', 'review', 'user_id'],
+        attributes: ['id', 'rating', 'review', 'user_id'],
         include: [
             {
                 model: User,
