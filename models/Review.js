@@ -24,7 +24,7 @@ review.init(
             }
         }, 
         review: {
-            type: DataTypes.TEXT,
+            type: DataTypes.STRING,
             allowNull: false
         },
         user_id: {
