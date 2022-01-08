@@ -8,7 +8,6 @@ router.get('/', (req, res) => {
         attributes: [
         'id', 
         'rating',
-        'review',
         'user_id',
         'created_at'
     ],
@@ -48,7 +47,6 @@ router.get('/post/:id', (req, res) => {
         attributes: [
             'id', 
             'rating',
-            'review',
             'user_id',
             'created_at'
         ],
