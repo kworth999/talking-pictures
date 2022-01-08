@@ -10,7 +10,7 @@ async function newFormHandler(event) {
         rating,
         review
     })
-    const response = await fetch(`/api/review`, {
+    const response = await fetch(`/api/reviews`, {
         method: 'POST',
         body: JSON.stringify({
             title,

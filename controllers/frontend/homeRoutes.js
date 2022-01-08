@@ -6,10 +6,11 @@ router.get('/', (req, res) => {
     console.log("howdy doody");
     Review.findAll({ 
         attributes: [
-        'id', 
-        'rating',
-        'user_id',
-        'created_at'
+        "id",
+        "title", 
+        "rating",
+        "user_id",
+        "created_at"
     ],
     include: [
         {

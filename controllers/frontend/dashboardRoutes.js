@@ -10,7 +10,7 @@ router.get('/', checkAuth, (req, res) => {
         where: {
             user_id: req.session.user_id
         },
-        attributes: [ 'id', 'rating', 'user_id' ],
+        attributes: [ 'id', 'title', 'rating', 'user_id' ],
         order: [[ 'created_at', 'DESC' ]],
         include: [
             {
