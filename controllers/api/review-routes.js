@@ -7,7 +7,7 @@ const sequelize = require('../../config/connection');
 // Get all users - /api/review/
 router.get('/', /*checkAuth,*/ (req, res) => {
     Review.findAll({
-        attributes: ['id', 'title', 'rating', 'review'],
+        attributes: ['id', 'rating', 'review'],
         order: [['created_at', 'DESC']],
         include: [
             {
@@ -28,7 +28,7 @@ router.get('/:id', (req, res) => {
         where: { 
             id: req.params.id
         },
-        attributes: [ 'id', 'title', 'rating', 'review'],
+        attributes: [ 'id', 'rating', 'review'],
         include: [
             {
                 model: User,
